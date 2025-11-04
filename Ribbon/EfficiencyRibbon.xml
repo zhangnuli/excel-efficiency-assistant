@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<customUI xmlns="http://schemas.microsoft.com/office/2009/07/customui" onLoad="Ribbon_Load">
+
+  <!-- 功能区选项卡定义 -->
+  <ribbon startFromScratch="false">
+
+    <!-- Excel效率助手 主选项卡 -->
+    <tab id="tabEfficiencyAssistant" label="Excel效率助手" insertAfterMso="TabHome">
+
+      <!-- 数据匹配组 -->
+      <group id="groupDataMatching" label="🔗 数据匹配">
+
+        <!-- 智能匹配主按钮 -->
+        <button id="btnSmartMatch"
+                label="智能匹配"
+                size="large"
+                image="SmartMatch"
+                onAction="OnSmartMatch"
+                keytip="SM"
+                screentip="智能VLOOKUP"
+                supertip="自动识别主键列，智能匹配数据源，一键完成数据关联" />
+
+        <!-- 批量VLOOKUP -->
+        <button id="btnBatchVLookup"
+                label="批量VLOOKUP"
+                size="normal"
+                image="VLookup"
+                onAction="OnBatchVLookup"
+                keytip="BV"
+                screentip="批量VLOOKUP"
+                supertip="批量执行VLOOKUP操作，支持大量数据处理" />
+
+        <!-- 匹配设置 -->
+        <button id="btnMatchSettings"
+                label="匹配设置"
+                size="normal"
+                image="Settings"
+                onAction="OnMatchSettings"
+                keytip="MS"
+                screentip="匹配设置"
+                supertip="配置数据匹配的默认选项和规则" />
+
+      </group>
+
+      <!-- 表格美化组 -->
+      <group id="groupTableBeautifier" label="🎨 表格美化">
+
+        <!-- 智能美化主按钮 -->
+        <button id="btnSmartBeautify"
+                label="智能美化"
+                size="large"
+                image="AutoFormat"
+                onAction="OnSmartBeautify"
+                keytip="SB"
+                screentip="智能美化表格"
+                supertip="自动识别表格类型，推荐最适合的美化模板" />
+
+        <!-- 模板库菜单 -->
+        <menu id="menuTemplateGallery"
+              label="模板库"
+              size="normal"
+              image="Templates"
+              keytip="TG"
+              screentip="美化模板库"
+              supertip="选择预设的专业美化模板">
+
+          <!-- 经典系列 -->
+          <menu id="menuClassicTemplates" label="🌟 经典系列">
+            <button id="btnClassicBlue"
+                    label="经典蓝"
+                    onAction="OnApplyTemplate"
+                    tag="classic_blue"
+                    image="BlueTheme" />
+            <button id="btnBusinessGray"
+                    label="商务灰"
+                    onAction="OnApplyTemplate"
+                    tag="business_gray"
+                    image="GrayTheme" />
+          </menu>
+
+          <!-- 现代系列 -->
+          <menu id="menuModernTemplates" label="🎨 现代系列">
+            <button id="btnModernRainbow"
+                    label="现代彩虹"
+                    onAction="OnApplyTemplate"
+                    tag="modern_rainbow"
+                    image="RainbowTheme" />
+            <button id="btnFreshGreen"
+                    label="清新绿"
+                    onAction="OnApplyTemplate"
+                    tag="fresh_green"
+                    image="GreenTheme" />
+            <button id="btnVibrantOrange"
+                    label="活力橙"
+                    onAction="OnApplyTemplate"
+                    tag="vibrant_orange"
+                    image="OrangeTheme" />
+          </menu>
+
+          <menuSeparator id="sepTemplateGallery" />
+
+          <!-- 快速工具 -->
+          <button id="btnQuickBeautify"
+                  label="快速工具..."
+                  onAction="OnQuickBeautify"
+                  image="QuickTools" />
+        </menu>
+
+        <!-- 快速美化工具 -->
+        <button id="btnQuickTools"
+                label="快速工具"
+                size="normal"
+                image="QuickTools"
+                onAction="OnQuickTools"
+                keytip="QT"
+                screentip="快速美化工具"
+                supertip="自适应列宽、隔行换色、格式化数字等快速工具" />
+
+      </group>
+
+      <!-- 文本处理组 -->
+      <group id="groupTextProcessor" label="📝 文本处理">
+
+        <!-- 大小写转换菜单 -->
+        <menu id="menuCaseConversion"
+              label="大小写转换"
+              size="normal"
+              image="CaseConversion"
+              keytip="CC"
+              screentip="大小写转换"
+              supertip="转换文本的大小写格式">
+
+          <button id="btnUpperCase"
+                  label="转大写"
+                  onAction="OnTextProcess"
+                  tag="UpperCase"
+                  image="UpperCase" />
+          <button id="btnLowerCase"
+                  label="转小写"
+                  onAction="OnTextProcess"
+                  tag="LowerCase"
+                  image="LowerCase" />
+          <button id="btnProperCase"
+                  label="首字母大写"
+                  onAction="OnTextProcess"
+                  tag="ProperCase"
+                  image="ProperCase" />
+        </menu>
+
+        <!-- 空格处理菜单 -->
+        <menu id="menuSpaceHandling"
+              label="空格处理"
+              size="normal"
+              image="SpaceHandling"
+              keytip="SH"
+              screentip="空格处理"
+              supertip="删除或处理文本中的空格">
+
+          <button id="btnTrimStart"
+                  label="删除首部空格"
+                  onAction="OnTextProcess"
+                  tag="TrimStart"
+                  image="TrimStart" />
+          <button id="btnTrimEnd"
+                  label="删除尾部空格"
+                  onAction="OnTextProcess"
+                  tag="TrimEnd"
+                  image="TrimEnd" />
+          <button id="btnTrimAll"
+                  label="删除全部空格"
+                  onAction="OnTextProcess"
+                  tag="TrimAll"
+                  image="TrimAll" />
+        </menu>
+
+        <!-- 智能提取菜单 -->
+        <menu id="menuSmartExtraction"
+              label="智能提取"
+              size="normal"
+              image="Extract"
+              keytip="SE"
+              screentip="智能提取"
+              supertip="从文本中提取特定类型的内容">
+
+          <button id="btnExtractNumbers"
+                  label="提取数字"
+                  onAction="OnTextProcess"
+                  tag="ExtractNumbers"
+                  image="ExtractNumbers" />
+          <button id="btnExtractLetters"
+                  label="提取字母"
+                  onAction="OnTextProcess"
+                  tag="ExtractLetters"
+                  image="ExtractLetters" />
+          <button id="btnExtractEmails"
+                  label="提取邮箱"
+                  onAction="OnTextProcess"
+                  tag="ExtractEmails"
+                  image="ExtractEmails" />
+          <button id="btnExtractPhones"
+                  label="提取手机号"
+                  onAction="OnTextProcess"
+                  tag="ExtractPhones"
+                  image="ExtractPhones" />
+          <button id="btnExtractUrls"
+                  label="提取网址"
+                  onAction="OnTextProcess"
+                  tag="ExtractUrls"
+                  image="ExtractUrls" />
+        </menu>
+
+        <!-- 批量操作菜单 -->
+        <menu id="menuBatchOperations"
+              label="批量操作"
+              size="normal"
+              image="BatchOperations"
+              keytip="BO"
+              screentip="批量操作"
+              supertip="批量处理文本数据">
+
+          <button id="btnAddPrefix"
+                  label="添加前缀..."
+                  onAction="OnAddPrefix"
+                  image="AddPrefix" />
+          <button id="btnAddSuffix"
+                  label="添加后缀..."
+                  onAction="OnAddSuffix"
+                  image="AddSuffix" />
+          <button id="btnBatchReplace"
+                  label="批量替换..."
+                  onAction="OnBatchReplace"
+                  image="Replace" />
+          <button id="btnSplitColumn"
+                  label="拆分列..."
+                  onAction="OnSplitColumn"
+                  image="SplitColumn" />
+          <button id="btnMergeColumns"
+                  label="合并列..."
+                  onAction="OnMergeColumns"
+                  image="MergeColumns" />
+        </menu>
+
+      </group>
+
+      <!-- 帮助与设置组 -->
+      <group id="groupHelpAndSettings" label="❓ 帮助与设置">
+
+        <!-- 新手指南 -->
+        <button id="btnBeginnerGuide"
+                label="新手指南"
+                size="normal"
+                image="Help"
+                onAction="OnBeginnerGuide"
+                keytip="BG"
+                screentip="新手使用指南"
+                supertip="查看功能介绍和使用教程，快速上手" />
+
+        <!-- 设置 -->
+        <button id="btnSettings"
+                label="设置"
+                size="normal"
+                image="Settings"
+                onAction="OnSettings"
+                keytip="ST"
+                screentip="插件设置"
+                supertip="配置插件的各种选项和偏好设置" />
+
+        <!-- 关于 -->
+        <button id="btnAbout"
+                label="关于"
+                size="normal"
+                image="About"
+                onAction="OnAbout"
+                keytip="AB"
+                screentip="关于Excel效率助手"
+                supertip="版本信息和开发团队" />
+
+      </group>
+
+    </tab>
+
+    <!-- 上下文选项卡 - 选定区域时显示 -->
+    <contextualTabs>
+
+      <tabSet idMso="TabSetSelection">
+
+        <tab id="tabContextualTools"
+             label="效率工具"
+             getVisible="GetContextualTabVisible">
+
+          <!-- 快速操作组 -->
+          <group id="groupQuickActions" label="快速操作">
+
+            <button id="btnQuickMatch"
+                    label="快速匹配"
+                    size="large"
+                    image="QuickMatch"
+                    onAction="OnQuickMatch"
+                    screentip="快速数据匹配"
+                    supertip="对选定区域快速执行数据匹配" />
+
+            <button id="btnQuickFormat"
+                    label="快速美化"
+                    size="large"
+                    image="QuickFormat"
+                    onAction="OnQuickFormat"
+                    screentip="快速美化表格"
+                    supertip="一键美化选定的表格区域" />
+
+            <button id="btnQuickText"
+                    label="快速文本"
+                    size="large"
+                    image="QuickText"
+                    onAction="OnQuickText"
+                    screentip="快速文本处理"
+                    supertip="对选定区域快速执行常用文本操作" />
+
+          </group>
+
+        </tab>
+
+      </tabSet>
+
+    </contextualTabs>
+
+  </ribbon>
+
+  <!-- 右键菜单（上下文菜单）扩展 -->
+  <contextMenus>
+
+    <!-- 单元格右键菜单 -->
+    <contextMenu idMso="ContextMenuCell">
+
+      <menuSeparator id="sepEfficiencyAssistant" />
+
+      <menu id="menuCellQuickActions"
+            label="Excel效率助手"
+            image="QuickActions">
+
+        <button id="btnCtxMatch"
+                label="数据匹配..."
+                onAction="OnContextMatch"
+                image="Match" />
+        <button id="btnCtxFormat"
+                label="美化表格..."
+                onAction="OnContextFormat"
+                image="Format" />
+        <button id="btnCtxText"
+                label="文本处理..."
+                onAction="OnContextText"
+                image="Text" />
+
+        <menuSeparator id="sepCellActions" />
+
+        <button id="btnCtxUpper"
+                label="转大写"
+                onAction="OnContextTextAction"
+                tag="UpperCase" />
+        <button id="btnCtxLower"
+                label="转小写"
+                onAction="OnContextTextAction"
+                tag="LowerCase" />
+        <button id="btnCtxTrim"
+                label="删除空格"
+                onAction="OnContextTextAction"
+                tag="TrimAll" />
+
+      </menu>
+
+    </contextMenu>
+
+    <!-- 列右键菜单 -->
+    <contextMenu idMso="ContextMenuColumn">
+
+      <menuSeparator id="sepColumnAssistant" />
+
+      <menu id="menuColumnActions"
+            label="Excel效率助手"
+            image="ColumnActions">
+
+        <button id="btnColSplit"
+                label="拆分列..."
+                onAction="OnContextSplitColumn"
+                image="SplitColumn" />
+        <button id="btnColMerge"
+                label="合并列..."
+                onAction="OnContextMergeColumns"
+                image="MergeColumns" />
+        <button id="btnColExtract"
+                label="提取数据..."
+                onAction="OnContextExtract"
+                image="Extract" />
+
+      </menu>
+
+    </contextMenu>
+
+    <!-- 行右键菜单 -->
+    <contextMenu idMso="ContextMenuRow">
+
+      <menuSeparator id="sepRowAssistant" />
+
+      <menu id="menuRowActions"
+            label="Excel效率助手"
+            image="RowActions">
+
+        <button id="btnRowFormat"
+                label="美化行..."
+                onAction="OnContextFormatRow"
+                image="FormatRow" />
+        <button id="btnRowProcess"
+                label="处理行数据..."
+                onAction="OnContextProcessRow"
+                image="ProcessRow" />
+
+      </menu>
+
+    </contextMenu>
+
+  </contextMenus>
+
+  <!-- 后台视图（Backstage）扩展 -->
+  <backstage>
+
+    <tab id="tabBackstageHelp"
+         label="帮助与支持"
+         insertAfterMso="TabHelp">
+
+      <!-- 首页组 -->
+      <firstColumn>
+
+        <group id="grpBackstageGettingStarted"
+               label="快速开始">
+
+          <primaryItem id="btnBackstageTutorial"
+                       image="Tutorial"
+                       onAction="OnBackstageTutorial"
+                       label="新手教程" />
+
+          <topItems>
+            <button id="btnBackstageSamples"
+                    image="Samples"
+                    onAction="OnBackstageSamples"
+                    label="示例文件" />
+            <button id="btnBackstageTemplates"
+                    image="Templates"
+                    onAction="OnBackstageTemplates"
+                    label="模板下载" />
+          </topItems>
+
+        </group>
+
+        <group id="grpBackstageResources"
+               label="资源中心">
+
+          <topItems>
+            <button id="btnBackstageDocs"
+                    image="Documentation"
+                    onAction="OnBackstageDocumentation"
+                    label="使用文档" />
+            <button id="btnBackstageVideos"
+                    image="Videos"
+                    onAction="OnBackstageVideos"
+                    label="视频教程" />
+            <button id="btnBackstageFAQ"
+                    image="FAQ"
+                    onAction="OnBackstageFAQ"
+                    label="常见问题" />
+          </topItems>
+
+        </group>
+
+      </firstColumn>
+
+      <!-- 第二列 -->
+      <secondColumn>
+
+        <group id="grpBackstageSupport"
+               label="技术支持">
+
+          <topItems>
+            <button id="btnBackstageContact"
+                    image="Contact"
+                    onAction="OnBackstageContact"
+                    label="联系我们" />
+            <button id="btnBackstageFeedback"
+                    image="Feedback"
+                    onAction="OnBackstageFeedback"
+                    label="意见反馈" />
+            <button id="btnBackstageUpdate"
+                    image="Update"
+                    onAction="OnBackstageUpdate"
+                    label="检查更新" />
+          </topItems>
+
+        </group>
+
+      </secondColumn>
+
+    </tab>
+
+  </backstage>
+
+</customUI>

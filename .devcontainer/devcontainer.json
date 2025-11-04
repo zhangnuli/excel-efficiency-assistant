@@ -1,0 +1,30 @@
+{
+  "name": "Excel效率助手 VSTO开发环境",
+  "dockerfile": "Dockerfile",
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/bash",
+    "csharp.semanticHighlighting.enabled": true,
+    "csharp.format.enable": true,
+    "omnisharp.useGlobalMono": "never",
+    "omnisharp.enableRoslynAnalyzers": true,
+    "omnisharp.enableEditorConfigSupport": true,
+    "omnisharp.enableImportCompletion": true,
+    "omnisharp.organizeImportsOnFormat": true
+  },
+  "extensions": [
+    "ms-dotnettools.csharp",
+    "ms-dotnettools.vscode-dotnet-runtime",
+    "ms-azuretools.vscode-docker",
+    "GitHub.copilot",
+    "GitHub.vscode-pull-request-github",
+    "ms-vscode.hexeditor",
+    "redhat.vscode-yaml",
+    "ms-vscode.vscode-json"
+  ],
+  "forwardPorts": [5000, 5001, 7071],
+  "mounts": [
+    "source=${localWorkspaceFolder}/../docs,target=/workspaces/docs,type=volume"
+  ],
+  "postCreateCommand": "dotnet restore && dotnet tool install -g dotnet-ef",
+  "remoteUser": "vscode"
+}
